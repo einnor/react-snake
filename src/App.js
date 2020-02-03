@@ -23,7 +23,11 @@ const App = () => {
 
   const endGame = () => {};
 
-  const moveSnake = () => {};
+  const moveSnake = ({ keyCode}) => {
+    if (keyCode >= 37 && keyCode <= 40) {
+      setDirection(keyCode);
+    }
+  };
 
   const createApple = () => {};
 
@@ -31,7 +35,13 @@ const App = () => {
 
   const checkAppleCollision = () => {};
 
-  const gameLoop = () => {};
+  const gameLoop = () => {
+    const snakeCopy = JSON.parse(JSON.stringify(snake));
+    const newSnakeHead = [snakeCopy[0][0] + direction[0], snakeCopy[0][1] + direction[1]];
+    snakeCopy.unshift(newSnakeHead);
+    snakeCopy.pop();
+    setSnake(snakeCopy);
+  };
 
   useEffect(() => {
     const context = canvasRef.current.getContext('2d');

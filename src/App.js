@@ -38,7 +38,9 @@ const App = () => {
     }
   };
 
-  const createApple = () => {};
+  const createApple = () => {
+    return apple.map((_, i) => Math.floor(Math.random() * (CANVAS_SIZE[i]) / SCALE))
+  };
 
   const checkWallCollision = (piece, snk = snake) => {
     if (

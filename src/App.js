@@ -53,6 +53,10 @@ const App = () => {
     context.fillRect(apple[0], apple[1], 1, 1);
   }, [snake, apple, gameOver]);
 
+  useInterval(() => {
+    gameLoop();
+  }, speed);
+
   return (
     <div role="button" tabIndex={0} onKeyDown={moveSnake}>
       <canvas

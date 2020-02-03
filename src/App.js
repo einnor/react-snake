@@ -40,14 +40,38 @@ const App = () => {
 
   const createApple = () => {};
 
-  const checkWallCollision = () => {};
+  const checkWallCollision = (piece, snk = snake) => {
+    if (
+      piece[0] * SCALE >= CANVAS_SIZE[0] ||
+      piece[0] < 0 ||
+      piece[1] * SCALE >= CANVAS_SIZE[1] ||
+      piece[1] < 0
+    ) {
+      return true;
+    }
 
-  const checkAppleCollision = () => {};
+    for (const segment of snk) {
+      if (piece[0] === segment && piece[1] === segment[1]) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  const checkAppleCollision = (newSnake) => {
+    if (newSnake[0][0] === apple[0] && newSnake[0][1] === apple[1]) {
+      let newApple = createApple();
+    }
+  };
 
   const gameLoop = () => {
     const snakeCopy = JSON.parse(JSON.stringify(snake));
     const newSnakeHead = [snakeCopy[0][0] + direction[0], snakeCopy[0][1] + direction[1]];
     snakeCopy.unshift(newSnakeHead);
+    if (checkWallCollision(newSnakeHead)) {
+      endGame();
+    }
     snakeCopy.pop();
     setSnake(snakeCopy);
   };

@@ -19,9 +19,18 @@ const App = () => {
   const [direction, setDirection] = useState([0, -1]);
   const [speed, setSpeed] = useState(null);
 
-  const startGame = () => {};
+  const startGame = () => {
+    setSnake(SNAKE_START);
+    setApple(APPLE_START);
+    setDirection([0, -1]);
+    setSpeed(SPEED);
+    setGameOver(false);
+  };
 
-  const endGame = () => {};
+  const endGame = () => {
+    setSpeed(null);
+    setGameOver(true);
+  };
 
   const moveSnake = ({ keyCode}) => {
     if (keyCode >= 37 && keyCode <= 40) {
